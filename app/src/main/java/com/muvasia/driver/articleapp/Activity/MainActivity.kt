@@ -62,11 +62,11 @@ class MainActivity : AppCompatActivity() {
                     Log.d("response :: ", articleResponse.toString())
                     var articles: List<Article> = response.body()?.articles!!
                     Log.d("MainActivity", "" + articles.size)
-                    var msg: String = ""
-                    for (item: Article in articles.iterator()) {
-                        msg = msg + item.title + "\n"
+                    var articleTitle: String = ""
+                    articles.forEach {
+                        articleTitle = articleTitle + it.title+ "\n"
                     }
-                    tvArticleTitle.setText(msg + "")
+                    tvArticleTitle.setText(articleTitle + "")
 
                 }
 
