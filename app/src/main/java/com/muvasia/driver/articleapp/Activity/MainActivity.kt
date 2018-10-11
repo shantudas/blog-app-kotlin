@@ -34,9 +34,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        DisplayProgressDialog()
-
         getArticlesData()
 
     }
@@ -45,44 +42,26 @@ class MainActivity : AppCompatActivity() {
         api.getArticles().enqueue(object : Callback<ArticleResponse> {
 
             override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
-
-                Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_LONG).show()
                 Log.d("response :: ", t.toString())
             }
 
             override fun onResponse(call: Call<ArticleResponse>, response: Response<ArticleResponse>) {
 
-                Toast.makeText(this@MainActivity, response.isSuccessful.toString(), Toast.LENGTH_LONG).show()
-
                 if (response.isSuccessful) {
-                    if (pDialog != null && pDialog!!.isShowing()) {
-                        pDialog.dismiss()
-                    }
+
                     val articleResponse = response.body()
-                    Log.d("response :: ", articleResponse.toString())
-                    var articles: List<Article> = response.body()?.articles!!
-                    Log.d("MainActivity", "" + articles.size)
+                    val articles: List<Article> = articleResponse?.articles!!
+                    Log.d("MainActivity", "article Size :: " + articles.size)
+
                     var articleTitle: String = ""
                     articles.forEach {
                         articleTitle = articleTitle + it.title+ "\n"
+                        println(it.title)
                     }
                     tvArticleTitle.setText(articleTitle + "")
 
                 }
-
             }
-
         })
-
-    }
-
-    lateinit var pDialog: ProgressDialog
-    fun DisplayProgressDialog() {
-
-        pDialog = ProgressDialog(this@MainActivity)
-        pDialog!!.setMessage("Loading..")
-        pDialog!!.setCancelable(false)
-        pDialog!!.isIndeterminate = false
-        pDialog!!.show()
     }
 }
