@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.View
 import android.widget.LinearLayout
 import com.muvasia.driver.articleapp.Adapter.ArticleAdapter
 import com.muvasia.driver.articleapp.ApiUtils.ApiClient
@@ -38,6 +39,7 @@ class ArticleActivity : AppCompatActivity() {
 
 
     private fun getArticlesData() {
+
         var apiInterface: ApiInterface = ApiClient().getApiClient()!!.create(ApiInterface::class.java)
         apiInterface.getArticles().enqueue(object : Callback<ArticleResponse> {
 
@@ -47,6 +49,9 @@ class ArticleActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<ArticleResponse>, response: Response<ArticleResponse>) {
                 if (response.isSuccessful) {
+
+                    if (pbArticles.isShown)
+                        pbArticles.visibility= View.GONE
 
                     val articleResponse = response.body()
 

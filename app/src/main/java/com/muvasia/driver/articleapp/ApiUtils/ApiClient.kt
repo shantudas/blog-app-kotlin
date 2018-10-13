@@ -7,7 +7,7 @@ class ApiClient {
     private val BASE_URL: String = "https://tranquil-spire-95897.herokuapp.com/api/v1/"
     private var retrofit: Retrofit? = null
 
-    public fun getApiClient(): Retrofit? {
+    fun getApiClient(): Retrofit? {
         if (retrofit == null) {
             retrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL)

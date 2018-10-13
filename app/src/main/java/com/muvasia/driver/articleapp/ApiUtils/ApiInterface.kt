@@ -9,5 +9,5 @@ import retrofit2.http.GET
 interface ApiInterface {
 
     @GET("articles")
-     fun getArticles(): Call<ArticleResponse>
+    fun getArticles(): Call<ArticleResponse>
 }
