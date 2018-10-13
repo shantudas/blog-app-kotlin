@@ -2,9 +2,17 @@ package com.muvasia.driver.articleapp.Model
 
 import com.google.gson.annotations.SerializedName
 
-class Article(val title : String) {
+class Article {
 
-   /* @SerializedName("title")
-    var title: String? = null*/
+    var id: String? = null
+
+    @SerializedName("title")
+    var title: String? = null
+
+    @SerializedName("posted_by")
+    var author: String? = null
+
+
+
 
 }

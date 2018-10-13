@@ -28,9 +28,12 @@ class ArticleAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvArticleTitle.text = articleList[position].title
+        val author = "Posted by : " + articleList[position].author
+        holder.tvArticleAuthor.text = author
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvArticleTitle: TextView = view.tvArticleTitle
+        val tvArticleAuthor: TextView = view.tvArticleAuthor
     }
 }
