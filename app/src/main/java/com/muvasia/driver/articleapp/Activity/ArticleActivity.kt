@@ -1,25 +1,19 @@
 package com.muvasia.driver.articleapp.Activity
 
-import android.app.ProgressDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import android.widget.Toast
-import com.muvasia.driver.articleapp.ApiConstant
-import com.muvasia.driver.articleapp.ApiInterface
+import android.widget.LinearLayout
+import com.muvasia.driver.articleapp.Adapter.ArticleAdapter
 import com.muvasia.driver.articleapp.Model.Article
 import com.muvasia.driver.articleapp.R
-import com.muvasia.driver.articleapp.response.ArticleResponse
-import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import kotlinx.android.synthetic.main.activity_article.*
 
-class MainActivity : AppCompatActivity() {
 
-    private val api: ApiInterface
+class ArticleActivity : AppCompatActivity() {
+
+    /*private val api: ApiInterface
 
 
     init {
@@ -28,17 +22,33 @@ class MainActivity : AppCompatActivity() {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         api = retrofit.create(ApiInterface::class.java)
+    }*/
+
+    companion object {
+        private val TAG: String = ArticleActivity::class.java.simpleName
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_article)
+        Log.e(TAG, " onCreate ::  called")
 
-        getArticlesData()
+        rvArticlesList.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+
+        val articles = ArrayList<Article>()
+        articles.add(Article("This is an article title"))
+        articles.add(Article("This is an article title 2"))
+        articles.add(Article("This is an article title 3"))
+
+        val adapter = ArticleAdapter(articles, this)
+        rvArticlesList.adapter = adapter
+
+//        getArticlesData()
 
     }
 
-    private fun getArticlesData() {
+
+    /*private fun getArticlesData() {
         api.getArticles().enqueue(object : Callback<ArticleResponse> {
 
             override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
@@ -51,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
                     val articleResponse = response.body()
                     val articles: List<Article> = articleResponse?.articles!!
-                    Log.d("MainActivity", "article Size :: " + articles.size)
+                    Log.d("ArticleActivity", "article Size :: " + articles.size)
 
                     var articleTitle: String = ""
                     articles.forEach {
@@ -63,5 +73,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-    }
+    }*/
 }

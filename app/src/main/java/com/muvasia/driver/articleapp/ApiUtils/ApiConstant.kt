@@ -1,4 +1,4 @@
-package com.muvasia.driver.articleapp
+package com.muvasia.driver.articleapp.ApiUtils
 
 class ApiConstant {
 
