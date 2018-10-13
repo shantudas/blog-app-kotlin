@@ -51,13 +51,20 @@ class ArticleActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
 
                     if (pbArticles.isShown)
-                        pbArticles.visibility= View.GONE
+                        pbArticles.visibility = View.GONE
 
                     val articleResponse = response.body()
 
-                    val articles : ArrayList<Article> = articleResponse?.articles!!
+                    val articles: ArrayList<Article> = articleResponse?.articles!!
                     Log.d("ArticleActivity", "article Size :: " + articles.size)
                     rvArticlesList.adapter = ArticleAdapter(articles, this@ArticleActivity)
+
+
+                    val metaData = articleResponse.metaData
+                    val totalArticles = metaData?.totalArticles
+                    val currentPage = metaData?.currentPage
+                    Log.e(TAG, "metaData :: " + totalArticles + "--" + currentPage)
+
 
                     /*var articleTitle: String = ""
                     articles.forEach {

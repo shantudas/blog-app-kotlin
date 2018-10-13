@@ -12,6 +12,9 @@ class Article {
     @SerializedName("posted_by")
     var author: String? = null
 
+    @SerializedName("posted_at")
+    var postedAt: String? = null
+
 
 
 

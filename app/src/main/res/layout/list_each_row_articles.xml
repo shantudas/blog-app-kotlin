@@ -6,14 +6,21 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tvArticleTitle"
-        android:layout_width="match_parent"
+        android:id="@+id/tvArticleAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvArticlePostedAt"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/tvArticleAuthor"
+        android:id="@+id/tvArticleTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold" />
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content" />
+
 
 </LinearLayout>
