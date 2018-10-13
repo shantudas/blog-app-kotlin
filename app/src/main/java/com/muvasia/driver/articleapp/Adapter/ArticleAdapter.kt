@@ -12,7 +12,8 @@ import kotlinx.android.synthetic.main.list_each_row_articles.view.*
 
 class ArticleAdapter(
         private val articleList: ArrayList<Article>,
-        private val context: Context) : RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
+        private val context: Context
+        ) : RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
 
     companion object {
         private val TAG: String = ArticleAdapter::class.java.simpleName

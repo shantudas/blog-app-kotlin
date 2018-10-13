@@ -65,6 +65,11 @@ class ArticleActivity : AppCompatActivity() {
                     val currentPage = metaData?.currentPage
                     Log.e(TAG, "metaData :: " + totalArticles + "--" + currentPage)
 
+                    val articleLinks=articleResponse.links
+                    val previousPageUrl=articleLinks?.previousPageUrl
+                    val nextPageUrl=articleLinks?.nextPageUrl
+                    Log.e(TAG, "links :: " + previousPageUrl + "--" + nextPageUrl)
+
 
                     /*var articleTitle: String = ""
                     articles.forEach {
