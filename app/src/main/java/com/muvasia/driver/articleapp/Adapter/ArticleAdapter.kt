@@ -33,36 +33,23 @@ class ArticleAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val article = articleList[position]
-        holder.setData(article, position)
 
-        /*  holder.tvArticleTitle.text = article.title
-          holder.tvArticleAuthor.text = article.author
-          holder.tvArticlePostedAt.text = article.postedAt*/
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, ArticleDetailsActivity::class.java)
+            intent.putExtra("-article-id", article.id)
+            context.startActivity(intent)
+        }
+
+        holder.tvArticleTitle.text = article.title
+        holder.tvArticleAuthor.text = article.author
+        holder.tvArticlePostedAt.text = article.postedAt
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private var currentArticle: Article? = null
-        private var currentPosition: Int = 0
-
-        init {
-            itemView.setOnClickListener {
-                val intent = Intent(itemView.context, ArticleDetailsActivity::class.java)
-                intent.putExtra("-article-id",currentArticle!!.id)
-                itemView.context.startActivity(intent)
-            }
-        }
-
-        fun setData(article: Article, position: Int) {
-            this.currentPosition = position
-            this.currentArticle = article
-
-            itemView.tvArticleTitle.text = article.title
-
-        }
-        /*val tvArticleTitle: TextView = view.tvArticleTitle
-        val tvArticleAuthor: TextView = view.tvArticleAuthor
-        val tvArticlePostedAt: TextView = view.tvArticlePostedAt*/
+        val tvArticleTitle: TextView = itemView.tvArticleTitle
+        val tvArticleAuthor: TextView = itemView.tvArticleAuthor
+        val tvArticlePostedAt: TextView = itemView.tvArticlePostedAt
     }
 
 
