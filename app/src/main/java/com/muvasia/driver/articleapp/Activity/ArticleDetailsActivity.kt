@@ -51,7 +51,10 @@ class ArticleDetailsActivity : AppCompatActivity() {
                     pbArticleDetails.visibility = View.GONE
 
                 Log.d(TAG, "onResponse " + response.toString())
+
                 val articleResponse = response.body()
+                print(articleResponse)
+
 
                 val articleDetailsData = articleResponse?.detailsData
 
